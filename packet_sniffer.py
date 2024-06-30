@@ -16,6 +16,7 @@ def get_login_info(packet):
                 return load.decode('utf-8')
 
 def get_url(packet):
+    # convert byte to string by casting to str or use .decode()
     return f"[+]HTTP Request: {(packet[http.HTTPRequest].Host).decode('utf-8')}{(packet[http.HTTPRequest].Path).decode('utf-8')}"
 
 
