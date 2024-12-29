@@ -11,6 +11,11 @@ def sniff(interface):
     
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
+        print(packet.show())
+        host = (packet[http.HTTPRequest].Host).decode('utf-8', errors='ignore')
+        path = (packet[http.HTTPRequest].Path).decode('utf-8', errors='ignore')
+        url = host + path
+        print(f"url:{url}")
         if packet.haslayer(scapy.Raw):
             #save it in variable
             load = packet[scapy.Raw].load  # Get the raw data
